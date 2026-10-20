@@ -1,0 +1,312 @@
+<!doctype html><meta charset="utf-8"><title>gap-list</title><style>body{font-family:sans-serif;max-width:1100px;margin:24px auto;padding:0 16px;line-height:1.55}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:3px 6px;font-size:13px}code{background:#f3f3f3}</style><p><a href="../../index.html">← 返回 3D</a></p><h1>VOLTRA I 参考设计 CAD-v02 —— 可加工 / 可装配 / 可工作 缺口清单（gap-list）</h1>
+<p>版本：DOC-VER-04 / CAD-v02 · 2026-10-20（Asia/Shanghai）
+状态说明：✅ 已在 v02 中解决 · ◐ 已按假设值处理，需要实测或供应商数据确认 · ⛔ 需要用户决定
+数据来源：<code>site/downloads/strength.json</code>（60 项校核，FAIL 0）、<code>out/interference.json</code>（404 对，0 意外）、<code>out/motion_check.json</code>（11 个工况，0 意外）、<code>docs/patent-review.md</code>。
+标"假设"的数值都没有经过实测，不是原厂数据。</p>
+<h2>§0 待用户决定的事项（D）和未知项（U）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>事项</th>
+<th>现状（v02）</th>
+<th>选项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>D1</strong></td>
+<td>排线方式</td>
+<td>采用滑动小车：Tr10×2 丝杠 + 齿轮 z56/z35，结构依据专利 CN220223097U。用户原话是"有更好的方法就采用"。按 R20 单层、25 圈计算，蜗杆加摆动的行程不够。</td>
+<td>A. 保持滑动式（推荐）；B. 改为摆动式（照片疑似此型）：需要双层缠绕，或把卷筒 R 增大到约 28；C. 回到蜗杆 + 蜗轮驱动小车：效率低，自锁靠蜗杆</td>
+</tr>
+<tr>
+<td><strong>D2</strong></td>
+<td>出线罩凸出包络 4.5 mm</td>
+<td>EXIT-UNI-01 Ø45×4.5</td>
+<td>A. 接受（原机白罩也凸出）；B. 缩到齐平：转向轮必须内移，偏角会增大到约 62°，丝杠轴向力约 +5%</td>
+</tr>
+<tr>
+<td><strong>D3</strong></td>
+<td>机外出绳</td>
+<td>固定的抛光不锈钢喇叭口（Ra0.1，R≥6），绳为可换件</td>
+<td>A. 保持；B. 按专利 CN220213802U 增加旋转对轮：前板加厚约 6 mm，增加一套 61805</td>
+</tr>
+<tr>
+<td><strong>D4</strong></td>
+<td>断电抱死</td>
+<td>无。制动靠电机短接加制动电阻；丝杠能自锁，卷筒不能</td>
+<td>A. 保持（断电时绳可以拉出，安全性可接受）；B. 在电机尾端加电磁失电制动器：轴向 +12 mm，约 +90 g</td>
+</tr>
+<tr>
+<td><strong>D5</strong></td>
+<td>角度传感</td>
+<td>磁环 + 磁编码，单圈绝对；多圈由软件计数</td>
+<td>A. 保持；B. 按 CN222484497U 改为电感式双转子多圈，需定制 PCB</td>
+</tr>
+<tr>
+<td><strong>D6</strong></td>
+<td>电池电流和使用工况</td>
+<td>1.2 kW 峰值时电池电流约 47 A（假设 25.2 V 包），BAT-CONN 按 ≥50 A 选</td>
+<td>A. 按 1.2 kW 峰值 / 每组 ≤60 s 设计（当前）；B. 提高母线电压到 50 V，需重选电芯组</td>
+</tr>
+<tr>
+<td><strong>U1</strong></td>
+<td>未公开的 US 19/xxx 申请</td>
+<td>无法审查</td>
+<td>公开后补审</td>
+</tr>
+<tr>
+<td><strong>U2</strong></td>
+<td>绳与滚针轴承的供应商数据</td>
+<td>绳 MBL 9 kN 是典型值；HK0608/HK0610 的 C0 是估计值；MOD-UNK-01 功能未知</td>
+<td>拿到样本后重新计算 s0 和绳 SF</td>
+</tr>
+<tr>
+<td><strong>U3</strong></td>
+<td>Dock 立柱几何</td>
+<td>插槽 Ø40 H8、卡钩舌长 1.4 都是假设</td>
+<td>需要实测 Dock 柱</td>
+</tr>
+</tbody>
+</table>
+<h2>§1 材料、工艺、配合、形位公差、粗糙度 ✅</h2>
+<ul>
+<li>32 个自制件都有 A3 图纸：<code>site/downloads/drawings/&lt;ID&gt;.pdf/.dxf</code>；合订本 <code>VOLTRA-I-REF_工程图_合订_CAD-v02.pdf</code>。</li>
+<li>每张图包含：剖视和剖面线、轴向坐标尺寸、特征/孔表（ISO 286 公差带及极限偏差，按 IT/基本偏差表计算）、形位公差（基准 A/B）、粗糙度、材料/热处理/表面处理、技术要求，齿轮另附参数表。</li>
+<li>主要配合（全部设计值）：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>配合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6003 轴承位</td>
+<td>Ø17 k5 / 座孔 Ø35 K6（固定端）、H7 / G7（浮动端）</td>
+</tr>
+<tr>
+<td>定子</td>
+<td>定子孔 Ø94.742 H7，胶接</td>
+</tr>
+<tr>
+<td>花键</td>
+<td>DIN 5480 W17×1.25×12，9H/8f</td>
+</tr>
+<tr>
+<td>卷筒止口</td>
+<td>Ø24 H7 / g6</td>
+</tr>
+<tr>
+<td>传扭销</td>
+<td>Ø4 m6：毂 N7 过盈，卷筒 G7 滑配（v02 修正，原为 H7/H7）</td>
+</tr>
+<tr>
+<td>导杆</td>
+<td>Ø8 h6：左端 P7 压装，右端 H7 滑配</td>
+</tr>
+<tr>
+<td>滚针轴承</td>
+<td>HK 座孔 N7</td>
+</tr>
+<tr>
+<td>6000 内圈</td>
+<td>Ø10 k6</td>
+</tr>
+<tr>
+<td>61804</td>
+<td>Ø20 k6 / Ø32 K6</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>材料：</li>
+<li>壳体：AZ91D 压铸，拔模外 0.5° / 内 1°，DCTG6，壁厚 3.0±0.2；</li>
+<li>机加件：6061-T6 / 7075-T6；</li>
+<li>轴：42CrMo4，花键感应淬火；</li>
+<li>毂和齿轮：40Cr + 氮化；</li>
+<li>螺母：CuSn12；</li>
+<li>导轮 / 转向轮：440C。</li>
+<li>◐ 镁合金内螺纹统一加钢丝螺套（M3/M4），镁件不直接承载螺纹。</li>
+</ul>
+<h2>§2 紧固件：规格、旋合长度、扭矩、预紧 ✅</h2>
+<p>所有螺钉都已建模（杆部按底孔径建模，所以螺纹不会算成干涉），清单见 BOM <code>BOM_VOLTRA-I-REF_CAD-v02.csv</code>。</p>
+<table>
+<thead>
+<tr>
+<th>部位</th>
+<th>规格</th>
+<th>旋合</th>
+<th>扭矩</th>
+<th>预紧 / 校核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>卷筒中心螺钉 SCR-DRUM-01</td>
+<td>M5×70 12.9 + ISO 7092 Ø9 垫圈</td>
+<td>进轴 M5 深 17</td>
+<td>5.5 N·m</td>
+<td>预紧约 5.5–7.9 kN；垫圈下铝的压强 198 MPa &lt; 260；分离力 518 N ≪ 预紧</td>
+</tr>
+<tr>
+<td>转子毂 SCR-HUB-01</td>
+<td>6×M4</td>
+<td>8（2d）+ 钢丝螺套</td>
+<td>3.0 N·m</td>
+<td>摩擦传扭 64 N·m &gt; 峰值 38</td>
+</tr>
+<tr>
+<td>贯穿螺栓 BOLT-TIE-01</td>
+<td>4×M4×102</td>
+<td>7.5（1.9d）</td>
+<td>2.5 N·m</td>
+<td>从把手开口用 L 型扳手操作</td>
+</tr>
+<tr>
+<td>BRG-03-HSG</td>
+<td>4×M3×8</td>
+<td>5（1.7d）</td>
+<td>1.1 N·m</td>
+<td>预紧 1.8 kN</td>
+</tr>
+<tr>
+<td>出线底板</td>
+<td>4×M3 沉头</td>
+<td>钢丝螺套</td>
+<td>1.1 N·m</td>
+<td>单颗 294 N ≪ 2.9 kN</td>
+</tr>
+<tr>
+<td>左端盖</td>
+<td>4×M4 ISO 10642</td>
+<td>8</td>
+<td>2.6 N·m（限扭）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>桥架</td>
+<td>M4×14 + Ø3 销 / Ø6 g6 止口销</td>
+<td>—</td>
+<td>2.6 N·m</td>
+<td>—</td>
+</tr>
+<tr>
+<td>压线块</td>
+<td>M3×10 + 中强度螺纹胶</td>
+<td>—</td>
+<td>1.0 N·m</td>
+<td>锚固点残余张力 119 N，满足</td>
+</tr>
+</tbody>
+</table>
+<h2>§3 挡圈（DIN 471/472）和密封 ✅</h2>
+<ul>
+<li>挡圈：</li>
+<li>DIN 472-35：BRG-01；</li>
+<li>DIN 471-17 ×2：BRG-02 / BRG-03 内圈；</li>
+<li>DIN 472-26 + 471-10：丝杠 6000；</li>
+<li>DIN 471-10：下转向销；</li>
+<li>DIN 471-20 + 472-32：61804；</li>
+<li>槽径按标准表建模，入口孔已延长，可以装入。</li>
+<li>密封：</li>
+<li>轴承选 2RSH；</li>
+<li>分型面用 0.8 mm EPDM 条；</li>
+<li>左端盖密封面平面度 0.05；</li>
+<li>◐ 防护等级目标 IP4X（出绳口无法密封），没有做防水。</li>
+</ul>
+<h2>§4 绳路：弯曲半径、导向 ◐</h2>
+<ul>
+<li>绳路：卷筒出绳（x 11.44, y −19, z 20）→ 沿 +Y 进入小车双导轮之间（y 8）→ 转向轮包角 90° → 沿转向轴上行 → 喇叭口 → 绳头 z 105。</li>
+<li>偏角：小车同步误差为 0；相位误差 ±0.5 mm 时偏角 1.06°，小于 2°；转向座最大摆角 58°，运动校核覆盖 ±60°。</li>
+<li>D/d：卷筒 13.3；导轮 4.7（只导向，不承受包绕）；<strong>转向轮 5.0（包角 90°，满载）</strong>。UHMWPE 推荐 D/d ≥ 8。</li>
+<li>结论：能工作，但转向轮处是绳的主要疲劳点，绳定为可换件。</li>
+<li>改进方案：转向轮加大到 Ø26，D/d 为 7；需要转向座加宽 6 mm，列为可选项。</li>
+<li>喇叭口：喉部 Ø5，出口 R≥6，Ra0.1。</li>
+</ul>
+<h2>§5 排线同步和端部换向 ✅</h2>
+<ul>
+<li>同步：单层缠绕，卷筒转 1 圈，丝杠转 1.6 圈，导程 2 × 1.6 = 3.2 mm，等于槽距，误差为 0。</li>
+<li>换向：<strong>不需要</strong>。单层缠绕下，小车随卷筒正反转往返，没有换向机构。</li>
+<li>端部保护：两端限位开关 LW-LIMIT-01/02，触发点在 x_g −30.8 / 38.4，超程 1 mm 时压入为预期接触（motion_check 已标为预期）。另有软件按绳长限位。</li>
+<li>自锁：λ 4.05° &lt; φv 5.9°。</li>
+<li>齿轮：Lewis 应力 31.7 MPa；中心距 36.4±0.02，校核误差 0.04 mm &lt; ±0.05。</li>
+</ul>
+<h2>§6 绳端锚固 ✅</h2>
+<ul>
+<li>压线块 DRUM-CLAMP-01：R1.6 压槽加交错压齿，依据专利 CN220596688U。</li>
+<li>保留 3 圈死圈，摩擦衰减后锚固点张力只有 119 N。</li>
+</ul>
+<h2>§7 装配顺序和工具通道 ✅</h2>
+<p>详见 <code>docs/assembly-sequence.md</code>。要点：
+- 卷筒中心螺钉经空心轴颈 Ø10 用长柄扳手拧紧；
+- 贯穿螺栓从把手开口拧；
+- 齿轮定相：卷筒处于第 1 圈起点时小车在 x_g −29.3。</p>
+<h2>§8 布线和散热路径 ◐</h2>
+<ul>
+<li>功率级：MOSFET 经导热块 PCB-HS-01 和 1 mm TIM 贴到背壁。</li>
+<li>制动电阻：经 1 mm 导热垫贴在下壳底壁，2×M4 固定，带 NTC（BRK-TEMP-01）。</li>
+<li>电机：经定子胶接到 MOT-HSG 散热；转子毂内的 8 叶风扇通过端盖出风格栅换气。</li>
+<li>电机线：经 MOT-GROM-01 护线套进入 PCB 仓。</li>
+<li>◐ 热平衡没有做 CFD。按 1.2 kW 峰值、60 s 一组估算，热主要由壳体吸收；需要样机测温。</li>
+</ul>
+<h2>§9 制动电阻、电池 Dock、把手和绳头 ◐</h2>
+<ul>
+<li>制动电阻：66×16×40 占位。阻值按 60 V 斩波阈值计算（见设计文档）；◐ 具体型号待选。</li>
+<li>电池：BAT-MOD-01 94×94×89 按官方外形；电芯型号未定；接插件 ≥50 A（D6）。</li>
+<li>Dock：插槽 Ø40 H8，法兰承压，枢转卡钩依据专利 CN122407665A；◐ 立柱几何见 U3。</li>
+<li>把手：HSG-END-R-01 一体 U 型把手。绳头 CONN-01：绕线架加卡口（CN220668264U），◐ 挂环 / 卡扣是示意。</li>
+</ul>
+<h2>§10 壳体分型和拔模 ✅</h2>
+<ul>
+<li>上下半壳分型面在 y = 0（模型坐标），成对加工，有 2×Ø3 H7 定位销。</li>
+<li>拔模：外 0.5°，内 1°；圆角 R12。</li>
+<li>卷筒仓前盖是独立件 EXIT-BASE-01，可以机加。</li>
+</ul>
+<h2>§11 公差链 ✅</h2>
+<ul>
+<li>卷筒左挡边与 BRG-03-HSG 的间隙：名义 1.0（v02 从 0.5 改为 1.0），最坏情况 ±0.76，RSS ±0.32，不会碰。</li>
+<li>热伸长 0.1 mm（ΔT 40 K），由 BRG-03 浮动量 −1/+0.5 吸收。</li>
+<li>轴向游隙由 SPC-BRG01 配磨控制，厚 3.70±0.01。</li>
+</ul>
+<h2>§12 寿命和强度（摘自 strength.json）✅</h2>
+<ul>
+<li>轴承：</li>
+<li>BRG-01：径向 652 N，s0 4.98，满载 L10h 65 000 h；</li>
+<li>丝杠 6000：轴向 665 N，s0 1.47（≥1.2）；</li>
+<li>61804：s0 4.77；下转向 6000：s0 3.12；</li>
+<li>HK0608：s0 2.07；HK0610：s0 4.5（◐ C0 待按样本确认）。</li>
+<li>螺母：p 3.97 MPa，pv 2.18。磨损准则：轴向间隙 &gt; 0.4 时更换。</li>
+<li>轴：σeq 56 MPa；花键 p 9.7 MPa；销 τ 19.5 MPa。</li>
+<li>卷筒：内孔切向应力 48 MPa。</li>
+<li>桥架：62 MPa，挠度 0.126 mm。</li>
+<li>底板：简化梁 93 MPa &lt; 120，◐ 建议 FEA 复核。</li>
+<li>绳：SF 7.45（◐ MBL 待供应商确认，U2）。</li>
+<li>电机：T = 15.7 N·m &lt; 峰值 38；1 m/s 满力 785 W ≤ 1.2 kW。</li>
+</ul>
+<h2>§13 质量</h2>
+<ul>
+<li>整机 6.02 kg，不含绳头；官方为 5.8 kg。</li>
+<li>v02 对 MOT-HSG 和端盖做了减重。剩余 0.2 kg 的差距主要来自 HSG-END-R-01（490 g）和 MOT-HSG（827 g）；量产改为压铸后可以再减约 0.2 kg。</li>
+</ul>
+<h2>§14 v02 已修正的问题（相对 v01）</h2>
+<ol>
+<li>蜗杆 / 摆动排线行程不够 → 改为滑动小车（D1）。</li>
+<li>槽长改为 25 圈（工作圈 + 3 死圈 + 1 圈余量）。</li>
+<li>偏角臂长修正后，最大偏角为 58°。</li>
+<li>挡圈槽入口留有残料 → 入口孔延长。</li>
+<li>导杆与导轮销干涉 → 导杆移到 z 35。</li>
+<li>BRG-03-HSG 法兰与排线左支架干涉 → 改 PCD 并铣平法兰。</li>
+<li>转向座叉板与 DIN 472-32 干涉 → 叉板缩短并让位。</li>
+<li>沉头孔几何修正。</li>
+<li>工作平面偏移错误修正。</li>
+<li>Dock 法兰改为压壳内壁承压。</li>
+<li>卷筒间隙由 0.5 改为 1.0。</li>
+<li>M5 螺钉头下铝压强超限 → 加垫圈并降扭矩。</li>
+<li>传扭销配合改为 N7/G7。</li>
+<li>镁合金螺纹加钢丝螺套。</li>
+<li>整机质量由 7.06 kg 降到 6.02 kg。</li>
+</ol>

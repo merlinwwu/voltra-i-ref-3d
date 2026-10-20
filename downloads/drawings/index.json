@@ -1,38 +1,322 @@
 [
  {
-  "id": "DRUM-01",
-  "name": "螺旋槽卷筒",
-  "dxf": "DRUM-01.dxf",
-  "pdf": "DRUM-01.pdf"
+  "id": "ASSY-01-A",
+  "name": "总装剖视 A-A（卷筒/电机轴线 XY 中面 z=0）",
+  "dxf": "ASSY-01-A.dxf",
+  "pdf": "ASSY-01-A.pdf",
+  "png": "ASSY-01-A.png",
+  "scale": "1:1"
  },
  {
-  "id": "DRUM-HUB-01",
-  "name": "卷筒毂（内花键）",
-  "dxf": "DRUM-HUB-01.dxf",
-  "pdf": "DRUM-HUB-01.pdf"
+  "id": "ASSY-01-B",
+  "name": "总装剖视 B-B（出绳转向轴 YZ 面 x=11.44）",
+  "dxf": "ASSY-01-B.dxf",
+  "pdf": "ASSY-01-B.pdf",
+  "png": "ASSY-01-B.png",
+  "scale": "1:1"
+ },
+ {
+  "id": "ASSY-01-BOM-1",
+  "name": "总装明细表 BOM（1/2）",
+  "dxf": "ASSY-01-BOM-1.dxf",
+  "pdf": "ASSY-01-BOM-1.pdf",
+  "png": "ASSY-01-BOM-1.png",
+  "scale": "—"
+ },
+ {
+  "id": "ASSY-01-BOM-2",
+  "name": "总装明细表 BOM（2/2）",
+  "dxf": "ASSY-01-BOM-2.dxf",
+  "pdf": "ASSY-01-BOM-2.pdf",
+  "png": "ASSY-01-BOM-2.png",
+  "scale": "—"
+ },
+ {
+  "id": "HSG-MAIN-01-UPR",
+  "name": "主壳体·上半壳",
+  "dxf": "HSG-MAIN-01-UPR.dxf",
+  "pdf": "HSG-MAIN-01-UPR.pdf",
+  "png": "HSG-MAIN-01-UPR.png",
+  "scale": "1:1.5",
+  "features": 8
+ },
+ {
+  "id": "HSG-MAIN-01-LWR",
+  "name": "主壳体·下半壳",
+  "dxf": "HSG-MAIN-01-LWR.dxf",
+  "pdf": "HSG-MAIN-01-LWR.pdf",
+  "png": "HSG-MAIN-01-LWR.png",
+  "scale": "1:1.5",
+  "features": 9
+ },
+ {
+  "id": "HSG-END-L-01",
+  "name": "左端盖 / 电池仓盖",
+  "dxf": "HSG-END-L-01.dxf",
+  "pdf": "HSG-END-L-01.pdf",
+  "png": "HSG-END-L-01.png",
+  "scale": "1:1",
+  "features": 1
+ },
+ {
+  "id": "HSG-FRAME-01",
+  "name": "中隔板 / 骨架（电池仓与卷筒仓分隔，前后半壳横筋槽定位）",
+  "dxf": "HSG-FRAME-01.dxf",
+  "pdf": "HSG-FRAME-01.pdf",
+  "png": "HSG-FRAME-01.png",
+  "scale": "1:1",
+  "features": 5
  },
  {
   "id": "MOT-SHAFT-01",
-  "name": "电机输出轴",
+  "name": "电机轴（DIN 5480 外花键 + 转子法兰）",
   "dxf": "MOT-SHAFT-01.dxf",
-  "pdf": "MOT-SHAFT-01.pdf"
+  "pdf": "MOT-SHAFT-01.pdf",
+  "png": "MOT-SHAFT-01.png",
+  "scale": "1:1",
+  "features": 7
+ },
+ {
+  "id": "ROT-HUB-01",
+  "name": "转子毂（含 8 叶内置风扇）",
+  "dxf": "ROT-HUB-01.dxf",
+  "pdf": "ROT-HUB-01.pdf",
+  "png": "ROT-HUB-01.png",
+  "scale": "2:1",
+  "features": 6
+ },
+ {
+  "id": "MOT-HSG-01",
+  "name": "电机壳 / 定子座 / 前轴承座 / 排线丝杠轴承座",
+  "dxf": "MOT-HSG-01.dxf",
+  "pdf": "MOT-HSG-01.pdf",
+  "png": "MOT-HSG-01.png",
+  "scale": "1:1",
+  "features": 13
+ },
+ {
+  "id": "SPC-BRG01",
+  "name": "轴承隔套 Ø17.1/Ø21×3.7",
+  "dxf": "SPC-BRG01.dxf",
+  "pdf": "SPC-BRG01.pdf",
+  "png": "SPC-BRG01.png",
+  "scale": "5:1",
+  "features": 2
+ },
+ {
+  "id": "HSG-END-R-01",
+  "name": "右端盖（BRG-02 座、U 型把手、出风格栅）",
+  "dxf": "HSG-END-R-01.dxf",
+  "pdf": "HSG-END-R-01.pdf",
+  "png": "HSG-END-R-01.png",
+  "scale": "1:1",
+  "features": 5
+ },
+ {
+  "id": "DRUM-01",
+  "name": "卷筒（左旋螺旋绳槽 P3.2×25 圈，空心轴颈）",
+  "dxf": "DRUM-01.dxf",
+  "pdf": "DRUM-01.pdf",
+  "png": "DRUM-01.png",
+  "scale": "1:1",
+  "features": 12
+ },
+ {
+  "id": "DRUM-CLAMP-01",
+  "name": "绳端压线块（弧形压槽 + 交错压齿，专利 CN220596688U）",
+  "dxf": "DRUM-CLAMP-01.dxf",
+  "pdf": "DRUM-CLAMP-01.pdf",
+  "png": "DRUM-CLAMP-01.png",
+  "scale": "5:1",
+  "features": 1
  },
  {
   "id": "BRG-03-HSG",
-  "name": "BRG-03 轴承座",
+  "name": "BRG-03 轴承座（止口入中隔板）",
   "dxf": "BRG-03-HSG.dxf",
-  "pdf": "BRG-03-HSG.pdf"
+  "pdf": "BRG-03-HSG.pdf",
+  "png": "BRG-03-HSG.png",
+  "scale": "2.5:1",
+  "features": 5
  },
  {
-  "id": "WORM-01",
-  "name": "自锁蜗杆",
-  "dxf": "WORM-01.dxf",
-  "pdf": "WORM-01.pdf"
+  "id": "DRUM-HUB-01",
+  "name": "卷筒毂（DIN 5480 内花键 + 排线主动齿轮 m0.8 z56）",
+  "dxf": "DRUM-HUB-01.dxf",
+  "pdf": "DRUM-HUB-01.pdf",
+  "png": "DRUM-HUB-01.png",
+  "scale": "2.5:1",
+  "features": 2
+ },
+ {
+  "id": "LW-SCREW-01",
+  "name": "排线丝杠 Tr10×2 右旋（自锁）",
+  "dxf": "LW-SCREW-01.dxf",
+  "pdf": "LW-SCREW-01.pdf",
+  "png": "LW-SCREW-01.png",
+  "scale": "1:1",
+  "features": 5
+ },
+ {
+  "id": "LW-GEAR-01",
+  "name": "排线从动齿轮 m0.8 z35（带毂横销）",
+  "dxf": "LW-GEAR-01.dxf",
+  "pdf": "LW-GEAR-01.pdf",
+  "png": "LW-GEAR-01.png",
+  "scale": "5:1",
+  "features": 3
+ },
+ {
+  "id": "LW-SPC-01",
+  "name": "丝杠轴承隔套 Ø10.2/Ø14×1.5",
+  "dxf": "LW-SPC-01.dxf",
+  "pdf": "LW-SPC-01.pdf",
+  "png": "LW-SPC-01.png",
+  "scale": "5:1",
+  "features": 2
+ },
+ {
+  "id": "LW-END-L-01",
+  "name": "排线左端支架（丝杠衬套座 + 导杆座 + 限位开关座）",
+  "dxf": "LW-END-L-01.dxf",
+  "pdf": "LW-END-L-01.pdf",
+  "png": "LW-END-L-01.png",
+  "scale": "2.5:1",
+  "features": 5
+ },
+ {
+  "id": "LW-ROD-01",
+  "name": "导杆 Ø8 h6×115（防转）",
+  "dxf": "LW-ROD-01.dxf",
+  "pdf": "LW-ROD-01.pdf",
+  "png": "LW-ROD-01.png",
+  "scale": "1:1",
+  "features": 1
+ },
+ {
+  "id": "LW-CAR-01",
+  "name": "排线小车（双导轮夹绳 + 螺母座 + 导杆衬套座）",
+  "dxf": "LW-CAR-01.dxf",
+  "pdf": "LW-CAR-01.pdf",
+  "png": "LW-CAR-01.png",
+  "scale": "1:1",
+  "features": 5
+ },
+ {
+  "id": "LW-NUT-01",
+  "name": "自锁螺母 Tr10×2 右旋（青铜，L14）",
+  "dxf": "LW-NUT-01.dxf",
+  "pdf": "LW-NUT-01.pdf",
+  "png": "LW-NUT-01.png",
+  "scale": "5:1",
+  "features": 2
+ },
+ {
+  "id": "LW-ROL-01",
+  "name": "小车导轮 Ø14×11 ×2（绳偏角承载）",
+  "dxf": "LW-ROL-01.dxf",
+  "pdf": "LW-ROL-01.pdf",
+  "png": "LW-ROL-01.png",
+  "scale": "5:1",
+  "features": 2
+ },
+ {
+  "id": "LW-BRIDGE-01",
+  "name": "出线桥架（承下转向轴销，连隔板与电机壳）",
+  "dxf": "LW-BRIDGE-01.dxf",
+  "pdf": "LW-BRIDGE-01.pdf",
+  "png": "LW-BRIDGE-01.png",
+  "scale": "1:1",
+  "features": 4
+ },
+ {
+  "id": "EXIT-PIN-01",
+  "name": "下转向轴销 Ø10（压入桥架）",
+  "dxf": "EXIT-PIN-01.dxf",
+  "pdf": "EXIT-PIN-01.pdf",
+  "png": "EXIT-PIN-01.png",
+  "scale": "5:1",
+  "features": 3
+ },
+ {
+  "id": "EXIT-SWV-01",
+  "name": "转向座（叉架，随绳偏角自转，专利 CN220213802U 旋转座）",
+  "dxf": "EXIT-SWV-01.dxf",
+  "pdf": "EXIT-SWV-01.pdf",
+  "png": "EXIT-SWV-01.png",
+  "scale": "2:1",
+  "features": 7
+ },
+ {
+  "id": "EXIT-SHV-01",
+  "name": "转向轮（槽底 Ø15，绳 90° 转向）",
+  "dxf": "EXIT-SHV-01.dxf",
+  "pdf": "EXIT-SHV-01.pdf",
+  "png": "EXIT-SHV-01.png",
+  "scale": "5:1",
+  "features": 2
  },
  {
   "id": "EXIT-BASE-01",
-  "name": "出线口方形底板",
+  "name": "出线底板 / 卷筒仓前盖（黑色方板，承 785 N）",
   "dxf": "EXIT-BASE-01.dxf",
-  "pdf": "EXIT-BASE-01.pdf"
+  "pdf": "EXIT-BASE-01.pdf",
+  "png": "EXIT-BASE-01.png",
+  "scale": "1:1",
+  "features": 6
+ },
+ {
+  "id": "EXIT-UNI-01",
+  "name": "出线罩（白色，嵌抛光不锈钢喇叭口）",
+  "dxf": "EXIT-UNI-01.dxf",
+  "pdf": "EXIT-UNI-01.pdf",
+  "png": "EXIT-UNI-01.png",
+  "scale": "2.5:1",
+  "features": 2
+ },
+ {
+  "id": "EXIT-GUIDE-01",
+  "name": "抛光喇叭口导绳嘴（360° 出绳，R6 圆角）",
+  "dxf": "EXIT-GUIDE-01.dxf",
+  "pdf": "EXIT-GUIDE-01.pdf",
+  "png": "EXIT-GUIDE-01.png",
+  "scale": "5:1",
+  "features": 0
+ },
+ {
+  "id": "CONN-01",
+  "name": "绳头接头（绕线架 + 卡口，专利 CN220668264U）",
+  "dxf": "CONN-01.dxf",
+  "pdf": "CONN-01.pdf",
+  "png": "CONN-01.png",
+  "scale": "2.5:1",
+  "features": 3
+ },
+ {
+  "id": "PCB-HS-01",
+  "name": "功率级导热块（PCB 底面 → 背壁）",
+  "dxf": "PCB-HS-01.dxf",
+  "pdf": "PCB-HS-01.pdf",
+  "png": "PCB-HS-01.png",
+  "scale": "4:1",
+  "features": 0
+ },
+ {
+  "id": "DOCK-IF-01",
+  "name": "背面 Dock 插座（插槽 Ø40，法兰内侧承压）",
+  "dxf": "DOCK-IF-01.dxf",
+  "pdf": "DOCK-IF-01.pdf",
+  "png": "DOCK-IF-01.png",
+  "scale": "1:1",
+  "features": 7
+ },
+ {
+  "id": "DOCK-HOOK-01",
+  "name": "Dock 枢转卡钩（扭簧复位，专利 CN122407665A）",
+  "dxf": "DOCK-HOOK-01.dxf",
+  "pdf": "DOCK-HOOK-01.pdf",
+  "png": "DOCK-HOOK-01.png",
+  "scale": "5:1",
+  "features": 1
  }
 ]
