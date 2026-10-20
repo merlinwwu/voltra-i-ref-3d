@@ -1,0 +1,15 @@
+*{box-sizing:border-box}html,body{margin:0;height:100%;font:13px/1.45 "PingFang SC","Microsoft YaHei","Noto Sans CJK SC",system-ui,sans-serif;color:#1d232b;background:#eef1f4}
+#banner{position:fixed;top:0;left:0;right:0;height:28px;line-height:28px;background:#f07a1a;color:#fff;text-align:center;font-weight:600;z-index:10;font-size:12.5px}
+#app{position:absolute;top:28px;bottom:0;left:0;right:0;display:grid;grid-template-columns:270px 1fr 320px}
+aside{overflow:auto;padding:10px 12px;background:#fff;border-right:1px solid #dde2e7}#right{border-left:1px solid #dde2e7;border-right:none}
+h1{font-size:15px;margin:4px 0 8px}h2{font-size:13px;margin:12px 0 6px;color:#3b4a5a;border-bottom:1px solid #e6e9ed;padding-bottom:3px}
+label{display:block;margin:4px 0}input[type=range]{width:120px;vertical-align:middle}.row{display:flex;flex-wrap:wrap;gap:4px}.row label{display:inline-block;margin-right:6px}
+button{border:1px solid #c5ccd4;background:#f6f8fa;border-radius:4px;padding:3px 8px;cursor:pointer;font:inherit}button:hover{background:#e8edf2}
+#view{position:relative;overflow:hidden}#view canvas{display:block}
+.muted{color:#6a7581;font-size:12px}#tree .grp{font-weight:600;margin-top:6px;cursor:pointer}#tree .it{padding:1px 0 1px 12px;cursor:pointer;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#tree .it:hover,#tree .it.sel{background:#e3eefc}
+#info table{width:100%;border-collapse:collapse;font-size:12px}#info td{border-bottom:1px solid #eef0f2;padding:3px 2px;vertical-align:top}#info td:first-child{color:#6a7581;width:72px;white-space:nowrap}
+.src{display:inline-block;padding:0 6px;border-radius:8px;font-size:11.5px;color:#fff}.src.官方{background:#2e7d32}.src.照片{background:#1565c0}.src.专利{background:#6a1b9a}.src.假设{background:#c62828}.src.推测{background:#ad6800}.src.视频{background:#00838f}
+.lbl{background:rgba(255,255,255,.92);border:1px solid #9aa5b1;border-radius:3px;padding:1px 4px;font-size:11px;white-space:nowrap;pointer-events:none}
+.lbl.load{border-color:#d32f2f;color:#b71c1c}.lbl.meas{border-color:#1565c0;color:#0d47a1;font-weight:600}
+#subs label{display:inline-block;margin-right:8px}#dl ul{padding-left:16px;margin:4px 0}#dwgList{font-size:12px}
+#measBox{position:fixed;bottom:8px;left:290px;background:rgba(13,71,161,.9);color:#fff;padding:3px 8px;border-radius:4px;display:none}

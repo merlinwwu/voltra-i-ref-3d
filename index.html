@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VOLTRA I 独立参考设计 · 交互 3D（CAD v01）</title>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/jsm/" } }
+</script>
+</head>
+<body>
+<div id="banner">⚠ 独立参考设计，非原厂数据 · 尺寸未经实测 · 标准件为本设计选型，不是原机零件型号 · DOC-VER-03 / CAD-v01</div>
+<div id="app">
+  <aside id="left">
+    <h1>VOLTRA I 参考设计 3D</h1>
+    <section>
+      <h2>视图</h2>
+      <div class="row">
+        <button data-view="assembled">总装</button><button data-view="explode">爆炸</button><button data-view="section">剖切（纵剖）</button><button data-view="section-x">剖切（出线口横剖）</button><button data-view="reset">复位相机</button>
+      </div>
+      <label>爆炸 <input id="explode" type="range" min="0" max="1" step="0.01" value="0"><span id="explodeV">0</span></label>
+      <label>壳体透明度 <input id="shellOp" type="range" min="0" max="1" step="0.01" value="1"><span id="shellOpV">1</span></label>
+    </section>
+    <section>
+      <h2>剖切平面</h2>
+      <label><input id="clipOn" type="checkbox"> 启用</label>
+      <div class="row">
+        <label><input type="radio" name="clipAx" value="z" checked> Z（前后）</label>
+        <label><input type="radio" name="clipAx" value="y"> Y（高度）</label>
+        <label><input type="radio" name="clipAx" value="x"> X（长轴）</label>
+      </div>
+      <label>位置 <input id="clipPos" type="range" min="-170" max="170" step="0.5" value="0"><span id="clipPosV">0</span> mm</label>
+      <label><input id="clipFlip" type="checkbox"> 反向</label>
+    </section>
+    <section>
+      <h2>显示</h2>
+      <label><input id="dimOn" type="checkbox"> 关键尺寸标注</label>
+      <label><input id="loadOn" type="checkbox"> 绳拉力载荷路径（F=<span id="loadF">785</span> N）</label>
+      <label><input id="measOn" type="checkbox"> 测量模式（点两点）</label>
+      <button id="measClear">清除测量</button>
+      <div id="subs"></div>
+    </section>
+    <section>
+      <h2>零件树</h2>
+      <div id="tree"></div>
+    </section>
+  </aside>
+  <main id="view"></main>
+  <aside id="right">
+    <section id="info"><h2>零件信息</h2><p class="muted">点击模型或左侧零件树查看 ID、名称、关键尺寸和来源等级。</p></section>
+    <section id="dl">
+      <h2>下载</h2>
+      <ul>
+        <li><a href="downloads/step/TOP-ASSY-01.step" download>总装 STEP（AP214，含零件 ID 层级）</a></li>
+        <li><a href="models/voltra-i-ref.glb" download>总装 GLB</a></li>
+        <li><a href="downloads/BOM_VOLTRA-I-REF_CAD-v01.csv" download>BOM（CSV）</a></li>
+        <li><a href="downloads/params.yaml" download>参数表 params.yaml（含来源等级）</a></li>
+        <li><a href="downloads/interference_report.md" target="_blank">干涉检查 + 强度校核报告（F=785 N）</a></li>
+        <li><a href="downloads/drawings/VOLTRA-I-REF_工程图_合订.pdf" target="_blank">工程图合订 PDF</a></li>
+      </ul>
+      <div id="dwgList"></div>
+      <p class="muted">单件 STEP / STL：在零件信息中下载。</p>
+    </section>
+    <section>
+      <h2>说明</h2>
+      <p class="muted">坐标：X 长轴（向右 +），Y 高度（向上 +），Z 前后（+Z 为正面：屏幕/出线口）。单位 mm。图示状态：绳半收回、出线摆角 θ=0。</p>
+      <p class="muted">来源等级：官方 / 照片估算 / 专利 / 假设。电机按 Allied Motion MF0095044 官方数据表建模（货架基准，不代表原机电机）。</p>
+    </section>
+  </aside>
+</div>
+<div id="measBox"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

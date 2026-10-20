@@ -1,0 +1,126 @@
+{
+ "F": 785.0,
+ "T": 15.7,
+ "rows": [
+  {
+   "item": "BRG-01 径向反力（最不利，出绳在右端）",
+   "val": 653.54,
+   "unit": "N",
+   "allow": "",
+   "ok": null,
+   "note": "6003-2RSH C=6.37 kN, C0=3.25 kN（SKF）"
+  },
+  {
+   "item": "BRG-03 径向反力（最不利，出绳在左端）",
+   "val": 672.32,
+   "unit": "N",
+   "allow": "",
+   "ok": null,
+   "note": "6003-2RSH C=6.37 kN, C0=3.25 kN（SKF），浮动端"
+  },
+  {
+   "item": "BRG-01 静载安全系数 s0 = C0/P",
+   "val": 4.97,
+   "unit": "-",
+   "allow": "≥ 2",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "item": "BRG-03 静载安全系数 s0 = C0/P",
+   "val": 4.83,
+   "unit": "-",
+   "allow": "≥ 2",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "item": "BRG L10 寿命（P=0.6F，转）",
+   "val": 2.47,
+   "unit": "×10⁹ 转",
+   "allow": "需求 ≈5.7×10⁶ 转",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "item": "卷筒最大弯矩",
+   "val": 20.5,
+   "unit": "N·m",
+   "allow": "",
+   "ok": null,
+   "note": ""
+  },
+  {
+   "item": "卷筒弯曲应力（槽底 Ø37 / 孔 Ø28）",
+   "val": 6.13,
+   "unit": "MPa",
+   "allow": "6061-T6 σs 240 → [σ]≈80",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "item": "设计扭矩 T = F·r_eff",
+   "val": 15.7,
+   "unit": "N·m",
+   "allow": "MF0095044 峰值 38 N·m",
+   "ok": true,
+   "note": "电机外形可能换小一档：须保证峰值扭矩 ≥ T"
+  },
+  {
+   "item": "MOT-SHAFT-01 等效应力（花键齿根 df 14.25，M=F·15 + T）",
+   "val": 63.31,
+   "unit": "MPa",
+   "allow": "42CrMo4 调质 σs≈650 → 疲劳保守 [σ]≈120",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "item": "MOT-SHAFT-01 等效应力（BRG-01 位 Ø17，M=F·15 + T）",
+   "val": 37.29,
+   "unit": "MPa",
+   "allow": "42CrMo4 调质 σs≈650 → 疲劳保守 [σ]≈120",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "item": "DIN 5480 花键齿面挤压应力（l=19.5，ψ=0.75）",
+   "val": 10.18,
+   "unit": "MPa",
+   "allow": "[p]=30（动连接，调质未淬火）",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "item": "DRUM-PIN-01 剪切应力（4×Ø4，PCD34）",
+   "val": 18.37,
+   "unit": "MPa",
+   "allow": "[τ]≈80（45 钢/不锈）",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "item": "EXIT-BASE-01 单颗 M3 拉力（4 颗均分，转向合力 √2F）",
+   "val": 277.54,
+   "unit": "N",
+   "allow": "M3 8.8 级 As=5.03 → 0.6·σs·As≈1940 N",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "item": "EXIT-BRG-01 61810 径向载荷 ≈ √2F",
+   "val": 1110.16,
+   "unit": "N",
+   "allow": "61810 C0≈6.8 kN（样本值），s0≥2",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "item": "蜗杆导程角 λ / 当量摩擦角 φv(μ=0.08)",
+   "val": 3.58,
+   "unit": "°",
+   "allow": "λ < φv=4.57° 自锁",
+   "ok": true,
+   "note": ""
+  }
+ ]
+}

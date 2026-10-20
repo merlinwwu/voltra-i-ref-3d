@@ -1,0 +1,38 @@
+[
+ {
+  "id": "DRUM-01",
+  "name": "螺旋槽卷筒",
+  "dxf": "DRUM-01.dxf",
+  "pdf": "DRUM-01.pdf"
+ },
+ {
+  "id": "DRUM-HUB-01",
+  "name": "卷筒毂（内花键）",
+  "dxf": "DRUM-HUB-01.dxf",
+  "pdf": "DRUM-HUB-01.pdf"
+ },
+ {
+  "id": "MOT-SHAFT-01",
+  "name": "电机输出轴",
+  "dxf": "MOT-SHAFT-01.dxf",
+  "pdf": "MOT-SHAFT-01.pdf"
+ },
+ {
+  "id": "BRG-03-HSG",
+  "name": "BRG-03 轴承座",
+  "dxf": "BRG-03-HSG.dxf",
+  "pdf": "BRG-03-HSG.pdf"
+ },
+ {
+  "id": "WORM-01",
+  "name": "自锁蜗杆",
+  "dxf": "WORM-01.dxf",
+  "pdf": "WORM-01.pdf"
+ },
+ {
+  "id": "EXIT-BASE-01",
+  "name": "出线口方形底板",
+  "dxf": "EXIT-BASE-01.dxf",
+  "pdf": "EXIT-BASE-01.pdf"
+ }
+]

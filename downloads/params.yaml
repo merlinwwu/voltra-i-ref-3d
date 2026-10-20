@@ -1,0 +1,117 @@
+# VOLTRA I 独立参考设计 —— 参数化 CAD 参数表 (DOC-VER-03 / CAD v01)
+# 坐标：X 机身长轴（正面朝向观察者时向右为 +X），Y 高度（向上 +Y），Z 前后（+Z 为正面：屏幕/出线口；-Z 背面：Dock）
+# 原点：外形包络中心。单位 mm / N / N·m。
+# source 等级：官方 = 官方规格/手册/供应商官方数据表；照片估算；专利；假设（本参考设计取值或推算，非原机实测）
+# 重要：本文件所有「假设」值都不是原机实测值。
+meta:
+  doc: DOC-VER-03
+  cad_ver: CAD-v01
+  date: 2026-10-20
+  note: 独立参考设计，非原厂数据；尺寸未经实测
+p:
+  ENV_L:        {v: 323,   src: 官方, note: 官方外形 323×139×100}
+  ENV_H:        {v: 139,   src: 官方, note: Y 向}
+  ENV_D:        {v: 100,   src: 官方, note: Z 向（前后），截面限制方向}
+  MASS_TARGET:  {v: 5.8,   src: 官方, unit: kg}
+  SHELL_T:      {v: 2.5,   src: 假设, note: 主壳壁厚（镁/铝压铸）}
+  SHELL_R:      {v: 12,    src: 照片估算, note: 截面圆角，按外观比例}
+  # ---- 载荷 ----
+  F_RATED:      {v: 890,   src: 官方, note: 200 lb}
+  F_DESIGN:     {v: 785,   src: 假设, note: 设计最大绳拉力 80 kgf（2026-10-20 变更，原 1023 N 作废）；强度/干涉/图纸载荷标注均按此值}
+  T_DESIGN:     {v: 15.7,  src: 假设, note: F_DESIGN × r_eff = 785 × 0.020}
+  # ---- 电池（左段）----
+  BAT_X:        {v: 94,    src: 官方, note: 电池外形 94×94×89}
+  BAT_Y:        {v: 94,    src: 官方}
+  BAT_Z:        {v: 89,    src: 官方}
+  BAT_X0:       {v: -157,  src: 假设, note: 电池左端面 X}
+  # ---- 中隔板 / 卷筒仓 ----
+  FRAME_X0:     {v: -62.5, src: 假设}
+  FRAME_T:      {v: 3,     src: 假设}
+  # ---- 卷筒 DRUM-01 ----
+  DRUM_AXIS_Y:  {v: 0,     src: 假设, note: 卷筒/电机同轴，轴线 Y}
+  DRUM_AXIS_Z:  {v: 0,     src: 假设, note: 前后居中（截面受电机外径限制）}
+  R_EFF:        {v: 20,    src: 假设, note: 用户 v03 决定（照片估算 15–25）}
+  ROPE_D:       {v: 3.0,   src: 官方, note: 绳径约 3 mm}
+  ROPE_L:       {v: 2600,  src: 官方}
+  PITCH:        {v: 3.0,   src: 假设, note: LW-PITCH-MM = 槽距}
+  GROOVE_R:     {v: 1.6,   src: 假设, note: 槽底圆弧半径 ≈0.53d}
+  GROOVE_DEPTH: {v: 1.0,   src: 假设}
+  DEAD_TURNS:   {v: 3,     src: 假设}
+  DRUM_TURNS:   {v: 25,    src: 假设, note: 槽圈数；需 20.7+3=23.7}
+  DRUM_FLANGE_R: {v: 26,   src: 假设}
+  DRUM_FLANGE_T: {v: 3,    src: 假设}
+  DRUM_BORE_D:  {v: 28,    src: 假设, note: 右端毂止口 Ø28 H7}
+  DRUM_STUB_D:  {v: 17,    src: 假设, note: BRG-03（6003-2RSH）轴颈 Ø17 k5（DOC-VER-03 r2）}
+  DRUM_PIN_PCD: {v: 34,    src: 假设, note: 4×Ø4 传扭销}
+  # ---- X 向站位（左→右，假设）----
+  X_BRG03_HSG0: {v: -59.5, src: 假设, note: 法兰左面（贴中隔板）；止口 Ø39 伸入隔板孔至 -62}
+  X_BRG03_0:    {v: -60.5, src: 假设, note: BRG-03 左端面（B=10，至 -50.5）}
+  X_BRG03_HSG1: {v: -50.5, src: 假设}
+  X_DRV0:       {v: -50,   src: 假设}
+  X_DRV1:       {v: -45,   src: 假设}
+  X_GROOVE0:    {v: -42,   src: 假设, note: 绕绳段起点}
+  X_HUB_FL0:    {v: 36,    src: 假设, note: 卷筒右端面 / 毂法兰左面}
+  X_HUB_FL1:    {v: 40,    src: 假设}
+  X_MOT_HSG0:   {v: 44,    src: 假设, note: MOT-HSG-01 前端面}
+  X_MOT_FRONTWALL1: {v: 56, src: 假设}
+  X_STATOR0:    {v: 69,    src: 假设, note: 定子叠片左端}
+  X_MOT_HSG1:   {v: 120,   src: 假设}
+  X_ENDR_WEB1:  {v: 130,   src: 假设}
+  # ---- 电机：Allied Motion MF0095044（48 V 绕组）作为货架基准 ----
+  # 占位说明：电机外形可能换小一档（待用户通知）。只改 STATOR_OD/STATOR_LEN/ROTOR_* 与 X_STATOR0 即可重建，壳体压装孔/端盖随之更新。
+  STATOR_OD:    {v: 94.742, src: 官方, note: Allied MF0095 数据表 Ø94.742}
+  STATOR_LEN:   {v: 43.2,  src: 官方, note: MF0095044 定子长度}
+  ROTOR_LEN:    {v: 48.5,  src: 官方, note: MF0095044 转子长度}
+  ROTOR_ID:     {v: 58.42, src: 官方}
+  WIND_OD:      {v: 89.92, src: 官方, note: 端部绕组外径 max}
+  WIND_ID:      {v: 73.15, src: 官方, note: 端部绕组内径 min}
+  WIND_H_HALL:  {v: 11.43, src: 官方, note: 带霍尔侧绕组高度 max}
+  WIND_H:       {v: 5.08,  src: 官方}
+  ROTOR_OD:     {v: 69.0,  src: 假设, note: 数据表未给，按绕组内径反推}
+  STATOR_ID:    {v: 70.2,  src: 假设, note: 气隙 0.6 假设}
+  MOT_POLES:    {v: 16,    src: 官方, note: 仅指 MF0095 货架品；原机极对数未知，不推测}
+  MOT_PEAK_T:   {v: 38,    src: 官方, note: ±25%}
+  MOT_KT:       {v: 0.27,  src: 官方, unit: N·m/A}
+  MOT_KM:       {v: 0.47,  src: 官方, unit: N·m/√W}
+  MOT_MASS:     {v: 1.37,  src: 官方, unit: kg}
+  STAT_TOT_LEN: {v: 59.7,  src: 官方, note: 叠长 43.2 + 绕组端部 11.43 + 5.08（数据表 max 值相加）}
+  # ---- 轴承（参考设计选型，标准尺寸）----
+  BRG01:        {v: "6003-2RSH 17×35×10", src: 假设, note: DOC-VER-03 r2；SKF C=6.37 kN C0=3.25 kN；固定端}
+  BRG02:        {v: "6003-2RSH 17×35×10", src: 假设, note: DOC-VER-03 r2；内圈两侧挡圈，外圈轴向留 0.3}
+  BRG03:        {v: "6003-2RSH 17×35×10", src: 假设, note: DOC-VER-03 r2；浮动端，外圈 Ø35 G7 间隙配合，轴向 ±0.5}
+  EXIT_BRG:     {v: "61810-2RS 50×65×7", src: 假设, note: 薄壁轴承，照片见大直径轴承}
+  LW_BRG:       {v: "685ZZ 5×11×5",       src: 假设, note: 蜗杆轴支承 ×2}
+  # ---- 花键 ----
+  SPLINE:       {v: "DIN 5480 W17×1.25×12（30° 压力角，齿侧定心）", src: 假设, note: DOC-VER-03 r2 定 DIN 5480、外径 17 级；模数 1.25 / 齿数 12 为假设}
+  SPL_DB:       {v: 17,    src: 假设, note: 基准直径 d_B}
+  SPL_M:        {v: 1.25,  src: 假设}
+  SPL_Z:        {v: 12,    src: 假设}
+  SHAFT_D:      {v: 17,    src: 假设, note: MOT-SHAFT-D-MM，轴承座处 Ø17 k5（DOC-VER-03 r2）}
+  ROT_HUB_BORE: {v: 17,    src: 假设, note: ROT-HUB 孔 Ø17 H7 / 轴 r6 压装 + 厌氧胶}
+  SPLINE_LEN:   {v: 19.5,  src: 假设}
+  # ---- 排线：GR-01 + WORM-01 + WHEEL-01（方案①，螺旋槽卷筒补强）----
+  GR_M:         {v: 0.8,   src: 假设}
+  GR_DRV_Z:     {v: 45,    src: 假设}
+  GR_DRN_Z:     {v: 36,    src: 假设, note: i1 = 45/36 = 1.25}
+  WORM_M:       {v: 0.5,   src: 假设, note: 轴向模数}
+  WORM_Z1:      {v: 1,     src: 假设, note: 单头，λ=3.58°，自锁 tanλ=0.0625<μ≈0.1}
+  WORM_D1:      {v: 8,     src: 假设}
+  WHEEL_Z:      {v: 104,   src: 假设, note: 卷筒每转摆角 4.33°}
+  WHEEL_T:      {v: 6,     src: 假设}
+  WORM_AXIS_Z:  {v: 31,    src: 假设}
+  EXIT_X:       {v: -4.5,  src: 假设, note: 出线口中心 X = 绕绳段中点}
+  EXIT_BASE:    {v: 80,    src: 照片估算, note: 方形底板边长（照片比例）}
+  EXIT_BASE_T:  {v: 7,     src: 假设}
+  EXIT_BASE_Z0: {v: 36,    src: 假设}
+  SHEAVE_D:     {v: 16,    src: 照片估算}
+  SHEAVE_W:     {v: 6,     src: 假设}
+  SHEAVE_Z:     {v: 41,    src: 假设}
+  # ---- 其他 ----
+  LCD_W:        {v: 86.5,  src: 假设, note: 4" 4:3 模组外形（公版量级）}
+  LCD_H:        {v: 67,    src: 假设}
+  LCD_T:        {v: 4,     src: 假设}
+  DOCK_D:       {v: 80,    src: 假设, note: 接口直径；原机未测，不编造孔位}
+  BRK_SIZE:     {v: "100×20×40", src: 假设, note: 铝壳制动电阻外形占位}
+  PCB_SIZE:     {v: "100×124×1.6", src: 假设}
+  FAN_D:        {v: 80,    src: 假设}
+  TIE_BOLT:     {v: "M4×94（GB/T 70.1 头型，定制长度）", src: 假设, note: 数量 4 来自视频}
