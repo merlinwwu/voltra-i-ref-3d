@@ -1,0 +1,698 @@
+<!doctype html><meta charset="utf-8"><title>interference_report</title><style>body{font-family:sans-serif;max-width:1100px;margin:24px auto;padding:0 16px;line-height:1.55}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:3px 6px;font-size:13px}code{background:#f3f3f3}</style><p><a href="../index.html">← 返回 3D</a></p><h1>VOLTRA I 独立参考设计 — 干涉 / 运动 / 强度校核报告（CAD-v03，DOC-VER-05）</h1>
+<blockquote>
+<p>独立参考设计，非原厂数据；尺寸未经实测。设计载荷 F = 785 N（80 kgf），R = 25 mm，T = 19.62 N·m。</p>
+</blockquote>
+<h2>1. 静态干涉（网格预筛 + BRep 布尔求交）</h2>
+<ul>
+<li>零件 93，包围盒相交对 413，命中 0，其中意外 <strong>0</strong>。</li>
+<li>螺钉杆部按底孔径建模，螺纹不计干涉；螺旋件（卷筒、绳、蜗杆）只做网格级，阈值 5 mm³。</li>
+</ul>
+<h2>2. 运动包络（摆座 + 导线臂 + 蜗轮扇形绕摆轴旋转；卷筒转角）</h2>
+<ul>
+<li>工况：摆座 θ=-41.9°、摆座 θ=-30.0°、摆座 θ=-15.0°、摆座 θ=+0.0°、摆座 θ=+15.0°、摆座 θ=+30.0°、摆座 θ=+41.9°、摆座越程 θ=-44.4°（限位触发后 1°）、摆座越程 θ=+44.4°（限位触发后 1°）、卷筒转角 60°、卷筒转角 120°、卷筒转角 180°、卷筒转角 240°、卷筒转角 300°</li>
+<li>接触 2 处，意外 <strong>0</strong> 处。</li>
+<li>摆座越程 θ=-44.4°（限位触发后 1°）：EXIT-SWV-01 / LW-LIMIT-01 0.73 mm³ — 限位凸块压入开关（触发后再越程 1°，开关模型为含杠杆的包络）</li>
+<li>摆座越程 θ=+44.4°（限位触发后 1°）：EXIT-SWV-01 / LW-LIMIT-01 0.73 mm³ — 限位凸块压入开关（触发后再越程 1°，开关模型为含杠杆的包络）</li>
+</ul>
+<h2>3. 摆动排线运动学（lw_swing.json）</h2>
+<ul>
+<li>卷筒 R25，槽距 3.2，21 圈；工作 16.55 圈；摆轴 XO -2.82 / YO 46；臂长 Rs 38.98</li>
+<li>传动 z35→z24（惰轮）→z21，i = 1.6667；蜗杆 m0.8 z1=1 d1=16（q=20）左旋，λ 2.862°；蜗轮 z120，a = 56；卷筒每转 5.000°；θ ±41.38°</li>
+<li>同步误差最大 0.716 mm；偏角名义 1.15°，最坏 1.69°（恒定传动比下的正弦误差，不随行程累积；最坏值含对轮/绳间隙 0.3 mm）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>卷筒圈</th>
+<th>蜗杆圈</th>
+<th>θ (°)</th>
+<th>对轮 x</th>
+<th>槽 x</th>
+<th>误差 mm</th>
+<th>偏角 °</th>
+<th>最坏 °</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0.0</td>
+<td>-41.38</td>
+<td>-28.58</td>
+<td>-29.3</td>
+<td>0.716</td>
+<td>1.147</td>
+<td>1.627</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1.667</td>
+<td>-36.38</td>
+<td>-25.94</td>
+<td>-26.1</td>
+<td>0.163</td>
+<td>0.278</td>
+<td>0.789</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3.333</td>
+<td>-31.38</td>
+<td>-23.11</td>
+<td>-22.9</td>
+<td>-0.214</td>
+<td>0.386</td>
+<td>0.928</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5.0</td>
+<td>-26.38</td>
+<td>-20.14</td>
+<td>-19.7</td>
+<td>-0.436</td>
+<td>0.831</td>
+<td>1.402</td>
+</tr>
+<tr>
+<td>4</td>
+<td>6.667</td>
+<td>-21.38</td>
+<td>-17.03</td>
+<td>-16.5</td>
+<td>-0.527</td>
+<td>1.052</td>
+<td>1.65</td>
+</tr>
+<tr>
+<td>5</td>
+<td>8.333</td>
+<td>-16.38</td>
+<td>-13.81</td>
+<td>-13.3</td>
+<td>-0.509</td>
+<td>1.057</td>
+<td>1.68</td>
+</tr>
+<tr>
+<td>6</td>
+<td>10.0</td>
+<td>-11.38</td>
+<td>-10.51</td>
+<td>-10.1</td>
+<td>-0.408</td>
+<td>0.873</td>
+<td>1.514</td>
+</tr>
+<tr>
+<td>7</td>
+<td>11.667</td>
+<td>-6.38</td>
+<td>-7.15</td>
+<td>-6.9</td>
+<td>-0.248</td>
+<td>0.542</td>
+<td>1.196</td>
+</tr>
+<tr>
+<td>8</td>
+<td>13.333</td>
+<td>-1.38</td>
+<td>-3.76</td>
+<td>-3.7</td>
+<td>-0.056</td>
+<td>0.122</td>
+<td>0.783</td>
+</tr>
+<tr>
+<td>9</td>
+<td>15.0</td>
+<td>3.62</td>
+<td>-0.36</td>
+<td>-0.5</td>
+<td>0.144</td>
+<td>0.317</td>
+<td>0.975</td>
+</tr>
+<tr>
+<td>10</td>
+<td>16.667</td>
+<td>8.62</td>
+<td>3.02</td>
+<td>2.7</td>
+<td>0.325</td>
+<td>0.705</td>
+<td>1.354</td>
+</tr>
+<tr>
+<td>11</td>
+<td>18.333</td>
+<td>13.62</td>
+<td>6.36</td>
+<td>5.9</td>
+<td>0.462</td>
+<td>0.977</td>
+<td>1.61</td>
+</tr>
+<tr>
+<td>12</td>
+<td>20.0</td>
+<td>18.62</td>
+<td>9.63</td>
+<td>9.1</td>
+<td>0.529</td>
+<td>1.08</td>
+<td>1.692</td>
+</tr>
+<tr>
+<td>13</td>
+<td>21.667</td>
+<td>23.62</td>
+<td>12.80</td>
+<td>12.3</td>
+<td>0.501</td>
+<td>0.98</td>
+<td>1.567</td>
+</tr>
+<tr>
+<td>14</td>
+<td>23.333</td>
+<td>28.62</td>
+<td>15.85</td>
+<td>15.5</td>
+<td>0.354</td>
+<td>0.66</td>
+<td>1.218</td>
+</tr>
+<tr>
+<td>15</td>
+<td>25.0</td>
+<td>33.62</td>
+<td>18.77</td>
+<td>18.7</td>
+<td>0.066</td>
+<td>0.116</td>
+<td>0.644</td>
+</tr>
+<tr>
+<td>16</td>
+<td>26.667</td>
+<td>38.62</td>
+<td>21.51</td>
+<td>21.9</td>
+<td>-0.387</td>
+<td>0.643</td>
+<td>1.14</td>
+</tr>
+<tr>
+<td>16.552</td>
+<td>27.587</td>
+<td>41.38</td>
+<td>22.95</td>
+<td>23.667</td>
+<td>-0.716</td>
+<td>1.147</td>
+<td>1.627</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 强度 / 寿命 / 公差（strength.json）</h2>
+<p>FAIL = 0</p>
+<table>
+<thead>
+<tr>
+<th>组</th>
+<th>项目</th>
+<th>值</th>
+<th>单位</th>
+<th>许用 / 要求</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用谱</td>
+<td>卷筒平均转速</td>
+<td>191.0</td>
+<td>rpm</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>使用谱</td>
+<td>10 年运动小时</td>
+<td>1825.0</td>
+<td>h</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>使用谱</td>
+<td>10 年卷筒转数需求</td>
+<td>20.913</td>
+<td>×10⁶ 转</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>BRG-01 最大径向力（出绳点 x=22.1）</td>
+<td>544.6</td>
+<td>N</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>BRG-03 最大径向力（出绳点 x=-30.9）</td>
+<td>624.7</td>
+<td>N</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>BRG-01 静载安全系数 s0</td>
+<td>5.968</td>
+<td>-</td>
+<td>≥ 2</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>BRG-01 L10（P = 0.5·R01）</td>
+<td>12800.8</td>
+<td>×10⁶ 转</td>
+<td>需求 21×10⁶</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>摆座下 6201 径向 Fr / 轴向 Fa=F</td>
+<td>847.2</td>
+<td>N</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>摆座下 6201 s0 = C0/P0（C0 3.1 kN 按样本核对）</td>
+<td>3.441</td>
+<td>-</td>
+<td>≥ 2（摆动低速）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>摆座上 6201 径向 Fr</td>
+<td>1529.9</td>
+<td>N</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>摆座上 6201 s0</td>
+<td>2.026</td>
+<td>-</td>
+<td>≥ 2</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>蜗杆 626（固定端）轴向 Fa = Ft2</td>
+<td>421.4</td>
+<td>N</td>
+<td>≤ 0.5·C0 = 475</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>蜗杆 626 s0 = C0/(0.5·Fa)（C0 0.95 kN 按样本核对）</td>
+<td>4.509</td>
+<td>-</td>
+<td>≥ 2</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>蜗杆 HK0608（浮动端）径向</td>
+<td>103.6</td>
+<td>N</td>
+<td>C0≈2.3 kN（按样本核对）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>导向对轮 HK0608 径向 2F·sin(θm/2)；s0</td>
+<td>4.146</td>
+<td>-</td>
+<td>≥ 1.5</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴承</td>
+<td>中心转向轮 HK0608 径向 √2·F；s0</td>
+<td>2.072</td>
+<td>-</td>
+<td>≥ 1.5</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>卷筒</td>
+<td>单层缠绕接触压力 p = F/(R·p)</td>
+<td>9.812</td>
+<td>MPa</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>卷筒</td>
+<td>筒壁切向压应力（厚壁筒，Ø47/Ø36）</td>
+<td>47.483</td>
+<td>MPa</td>
+<td>6061-T6 σ0.2 240 → [σ] 120</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>卷筒</td>
+<td>卷筒弯曲应力（Ø47/Ø36）</td>
+<td>2.7</td>
+<td>MPa</td>
+<td>&lt; 80</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>卷筒</td>
+<td>锚固点残余张力 F·e^(−μ·2π·3)（μ=0.1）</td>
+<td>119.2</td>
+<td>N</td>
+<td>压线块 M3 预紧 ~2.6 kN × μ0.2 × 2 面</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴</td>
+<td>MOT-SHAFT-01 花键根部等效应力</td>
+<td>65.082</td>
+<td>MPa</td>
+<td>42CrMo4 调质 [σ]疲劳 120</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴</td>
+<td>DIN 5480 W17×1.25×12 齿面压强（l 25，ψ 0.75）</td>
+<td>9.924</td>
+<td>MPa</td>
+<td>[p] 30</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴</td>
+<td>PIN-DRUM-01 剪切（4×Ø3，PCD32，全扭矩）</td>
+<td>43.381</td>
+<td>MPa</td>
+<td>[τ] 80</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>轴</td>
+<td>转子毂 6×M4 摩擦传扭能力</td>
+<td>64.26</td>
+<td>N·m</td>
+<td>≥ MF0095056 峰值 51</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>蜗杆导程角 λ（m0.8 z1 d1 16）</td>
+<td>2.862</td>
+<td>°</td>
+<td>&lt; φ' 3.046°（μ0.05）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>静止自锁（μs ≥ 0.08）反驱效率</td>
+<td>-0.7</td>
+<td>-</td>
+<td>&lt; 0 自锁</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>蜗轮最大扭矩 T2（θ=θm，F 满载）</td>
+<td>20.228</td>
+<td>N·m</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>蜗轮齿根剪应力 τF ≈ Ft2/(b2·m)·0.75（DIN 3996 简化）</td>
+<td>39.507</td>
+<td>MPa</td>
+<td>CuSn12 τFlim 92 / SF 1.5 = 61</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>蜗轮齿面 σHm（p*m=1，E_red 147 GPa）</td>
+<td>165.7</td>
+<td>MPa</td>
+<td>CuSn12 σHlim 425 / SF 1.3 = 327</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>蜗杆驱动扭矩</td>
+<td>0.349</td>
+<td>N·m</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>卷筒附加阻力矩（占 T）</td>
+<td>2.963</td>
+<td>%</td>
+<td>&lt; 8%</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>正齿 m0.8 z35 Lewis（b4，Ft 42 N）</td>
+<td>35.078</td>
+<td>MPa</td>
+<td>40Cr 调质 [σF] 200</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>正齿 m0.8 z24 Lewis（b4，Ft 42 N）</td>
+<td>38.173</td>
+<td>MPa</td>
+<td>40Cr 调质 [σF] 200</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>正齿 m0.8 z21 Lewis（b4，Ft 42 N）</td>
+<td>39.33</td>
+<td>MPa</td>
+<td>40Cr 调质 [σF] 200</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>蜗杆挠度（等效 Ø10，跨 59.8）</td>
+<td>0.006</td>
+<td>mm</td>
+<td>≤ 0.01·m = 0.008</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>惰轮烧结铜套 pv（Ø5×4，1.2 kW 转速）</td>
+<td>0.926</td>
+<td>MPa·m/s</td>
+<td>≤ 1.8</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>PIN-LWG-01 Ø1.5 弹性销双剪</td>
+<td>34.635</td>
+<td>MPa</td>
+<td>[τ] 300</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>同步误差（全行程最大）</td>
+<td>0.716</td>
+<td>mm</td>
+<td>&lt; 1.0</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>排线</td>
+<td>偏角（名义 / 最坏含 0.3 间隙）</td>
+<td>1.693</td>
+<td>°</td>
+<td>≤ 2°</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>出线</td>
+<td>EXIT-PIN-01 Ø12 悬臂根部弯曲</td>
+<td>115.9</td>
+<td>MPa</td>
+<td>42CrMo4 调质 [σ] 250</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>出线</td>
+<td>LW-BRIDGE-01 7075 20×12 等效应力（外拉 F + 力矩）</td>
+<td>64.635</td>
+<td>MPa</td>
+<td>7075-T6 [σ] 150</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>出线</td>
+<td>桥架 Z 向挠度</td>
+<td>0.079</td>
+<td>mm</td>
+<td>&lt; 0.2</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>出线</td>
+<td>蜗杆副中心距受载变化（桥架 + 销）</td>
+<td>0.036</td>
+<td>mm</td>
+<td>&lt; 侧隙 0.08</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>出线</td>
+<td>LW-PIN-01 Ø6 悬臂弯曲（臂 4.5，2F·sin(θ/2)）</td>
+<td>117.7</td>
+<td>MPa</td>
+<td>GCr15 淬硬 [σ] 400</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>出线</td>
+<td>EXIT-AXL-01 Ø6 弯曲（跨 11.5，√2F）</td>
+<td>150.5</td>
+<td>MPa</td>
+<td>GCr15 淬硬 [σ] 400</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>出线</td>
+<td>摆座毂底挡肩剪切（Ø27×0.8，外拉 F）</td>
+<td>11.568</td>
+<td>MPa</td>
+<td>7075-T6 [τ] 120</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>出线</td>
+<td>桥架 M4 ×2 + 销 单颗拉力（外拉 F 分配 0.6）</td>
+<td>471.0</td>
+<td>N</td>
+<td>M4 10.9 保证载荷 7.8 kN</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>出线</td>
+<td>蜗杆箱 2×M3 剪力（Ft2 轴向）</td>
+<td>210.7</td>
+<td>N</td>
+<td>M3 8.8 + 定位销</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>绳</td>
+<td>卷筒 D/d</td>
+<td>16.667</td>
+<td>-</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>绳</td>
+<td>导向对轮 D/d</td>
+<td>4.333</td>
+<td>-</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>绳</td>
+<td>中心转向轮 D/d</td>
+<td>4.867</td>
+<td>-</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>绳</td>
+<td>安全系数（MBL 9 kN 典型 × 0.65 / F）</td>
+<td>7.452</td>
+<td>-</td>
+<td>≥ 5</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>电机</td>
+<td>T = F·r（+20% 余量）</td>
+<td>23.55</td>
+<td>N·m</td>
+<td>MF0095056 峰值降额 38.25</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>电机</td>
+<td>满力电流 / 铜损</td>
+<td>57.721</td>
+<td>A</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>电机</td>
+<td>绕组温度（严格口径）</td>
+<td>98.292</td>
+<td>°C</td>
+<td>≤ 130（F 级降额）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>电机</td>
+<td>1 m/s / 1.2 kW 转速</td>
+<td>382.0</td>
+<td>rpm</td>
+<td></td>
+<td>—</td>
+</tr>
+<tr>
+<td>公差</td>
+<td>蜗杆副中心距 56 链（框架/MOT-HSG 销定位 ±0.02×2 + 桥架 ±0.02 + 箱 ±0.01）</td>
+<td>0.07</td>
+<td>mm</td>
+<td>RSS ≈ 0.035；装配后测侧隙 0.05–0.12</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>公差</td>
+<td>卷筒+轴热伸长（ΔT 40 K）</td>
+<td>0.099</td>
+<td>mm</td>
+<td>BRG-03 浮动 −1/+0.5</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>

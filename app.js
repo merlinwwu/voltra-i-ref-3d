@@ -195,14 +195,14 @@ function buildDims() {
   dimLine([-161.5, -82, 50], [161.5, -82, 50], '长 323（官方）');
   dimLine([175, -69.5, 50], [175, 69.5, 50], '高 139（官方）');
   dimLine([175, -75, -50], [175, -75, 50], '深 100（官方）');
-  dimLine([d.XO, d.DY, 0], [d.XO, d.DY, 20], 'r_eff 20（假设，单层）', 0xc62828);
+  dimLine([d.X_DEP, d.DY, 0], [d.X_DEP, d.DY, 25], 'r_eff 25（单层，v03 为摆动排线加大）', 0xc62828);
   dimLine([d.XS0, d.DY, 0], [d.XS0, d.DY + 47.37, 0], 'R47.37 定子 Ø94.742（官方）', 0xb87333);
   dimLine([d.X_BRG03, d.DY - 32, 0], [d.X_BRG01, d.DY - 32, 0], `BRG-03 ↔ BRG-01 跨距 ${(d.X_BRG01 - d.X_BRG03).toFixed(1)}（假设）`, 0x6a1b9a);
-  dimLine([d.X_G0, d.DY - 26, 0], [d.X_G1, d.DY - 26, 0], `绳槽 ${d.X_G1 - d.X_G0} = 25 圈 × 槽距 3.2（左旋，假设）`, 0xc62828);
-  dimLine([d.XS0, d.DY + 52, 0], [d.XS1, d.DY + 52, 0], `定子叠长 ${(d.XS1 - d.XS0).toFixed(1)}（MF0095044，官方）`, 0xb87333);
-  dimLine([d.X_DEP, d.DY, 0], [d.X_DEP, d.SY, d.SZ], '齿轮中心距 36.4（m0.8）', 0x2e7d32);
-  dimGroup.add(label('排线：Tr10×2 右旋丝杠 + 齿轮 z56/z35（i=1.6）→ 卷筒每转 3.2 mm = 槽距（专利 CN220223097U 滑动式）', new THREE.Vector3(0, d.SY + 14, d.SZ)));
-  dimGroup.add(label(`出线转向座：绳偏角 ≤58°，转向轮 Ø20（D/d 5），上 61804 / 下 6000`, new THREE.Vector3(d.XO, d.YO + 12, d.ZSH + 25)));
+  dimLine([d.X_G0, d.DY - 26, 0], [d.X_G1, d.DY - 26, 0], `绳槽 ${(d.X_G1 - d.X_G0).toFixed(1)} = 21 圈 × 槽距 3.2（左旋，假设）`, 0xc62828);
+  dimLine([d.XS0, d.DY + 52, 0], [d.XS1, d.DY + 52, 0], `定子叠长 ${(d.XS1 - d.XS0).toFixed(1)}（MF0095056，官方）`, 0xb87333);
+  dimLine([d.XO, d.YW, d.ZW], [d.XO, d.YO, d.ZW], '蜗杆副中心距 56（m0.8 z1/z120）', 0x2e7d32);
+  dimGroup.add(label('排线：卷筒齿 z35 → 惰轮 z24 → z21 → 自锁蜗杆 m0.8 z1 → 摆动蜗轮扇形 z120：卷筒每转摆 5.000°（专利 CN122166625A / CN122233236A 摆动式）', new THREE.Vector3(d.XO, d.YW, d.ZW + 14)));
+  dimGroup.add(label(`摆动导线臂 ±41.4°（限位 ±43.4°）：对轮 Ø13 → 中心转向轮 → 沿摆轴出线；摆座 2×6201`, new THREE.Vector3(d.XO, d.YO + 12, d.ZSH + 25)));
 }
 // ---------- 载荷路径 ----------
 function buildLoad() {

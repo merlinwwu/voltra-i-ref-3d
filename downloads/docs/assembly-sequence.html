@@ -1,4 +1,7 @@
-<!doctype html><meta charset="utf-8"><title>assembly-sequence</title><style>body{font-family:sans-serif;max-width:1100px;margin:24px auto;padding:0 16px;line-height:1.55}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:3px 6px;font-size:13px}code{background:#f3f3f3}</style><p><a href="../../index.html">← 返回 3D</a></p><h1>CAD-v02 装配顺序（ASSY-01）</h1>
+<!doctype html><meta charset="utf-8"><title>assembly-sequence</title><style>body{font-family:sans-serif;max-width:1100px;margin:24px auto;padding:0 16px;line-height:1.55}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:3px 6px;font-size:13px}code{background:#f3f3f3}</style><p><a href="../../index.html">← 返回 3D</a></p><h1>CAD-v03 装配顺序（ASSY-01）</h1>
+<blockquote>
+<p>v03 变更：排线改为<strong>自锁蜗杆 + 摆动蜗轮扇形</strong>（用户决定 D1，专利 CN122166625A / CN122233236A 摆动式）。B、D 两节已重写，A 节增加惰轮销，C 节改为 R25 卷筒，F 节改为摆动检查。v02 版本备份：<code>assembly-sequence_v02.md</code>。</p>
+</blockquote>
 <p>所有扭矩都按干态、8.8 级（M5 用 12.9 级）、K≈0.2 计算。"胶"指中强度螺纹胶（Loctite 243 类）。图号见 <code>site/downloads/drawings/</code>，序号见 ASSY-01-BOM。</p>
 <h2>A. 电机模块（MOT-HSG-01 为基体）</h2>
 <ol>
@@ -10,47 +13,62 @@
 <li>HSG-END-R-01：先装 BRG-02，外圈 H7 滑入；装 WSPR-BRG02 波形弹簧和 ENC-PCB-01（3×M2，0.3 N·m）。整体套到轴尾和止口上，装 CLP-BRG02（DIN 471-17）。</li>
 <li>检查：转子用手转应顺畅，轴向游隙 0.05–0.15。</li>
 </ol>
-<h2>B. 排线模块（装在电机壳卷筒侧）</h2>
+<h2>A2. 惰轮（必须在卷筒之前）</h2>
+<p>7a. LW-IDL-BUSH-01（烧结青铜 Ø5/Ø8×4，s7）压入 LW-IDL-01（z24）。惰轮套到 LW-IDL-PIN-01 上，用压头把销压入 MOT-HSG 端面的 Ø5 R7 孔（深 10），头部留 0.1 轴向间隙。原因：装上卷筒后，卷筒挡边 r28 挡住压头通道。</p>
+<h2>B. 排线子组件（工作台上完成）</h2>
 <ol>
-<li>丝杠 LW-SCREW-01 右端依次装 LW-SPC-01 和 LW-BRG-01（6000，Ø10 k6 压入），装 CLP-LW-02（DIN 471-10）。整体压入 MOT-HSG 的 Ø26 K6 座，装 CLP-LW-01（DIN 472-26）。</li>
-<li>LW-CAR-01 子组件：</li>
-<li>压入 LW-NUT-01（Ø16 n6），M2 止转；</li>
-<li>压入 LW-BUSH-02；</li>
-<li>两个导轮 LW-ROL-01 各压一个 HK0610，套到 LW-PIN-01 上；销压入下板（N7），滑入上板（H7）。</li>
-<li>小车旋到丝杠上，LW-ROD-01 穿过衬套。导杆右端滑入 MOT-HSG 的 Ø8 H7 孔，左端压入 LW-END-L-01（P7）。LW-END-L 的衬套套到丝杠左轴颈 Ø8 f7 上。</li>
-<li>先装两个限位开关 LW-LIMIT-01/02（支架 M2）。</li>
+<li><strong>蜗杆箱 LW-BOX-01</strong>：</li>
+<li>HK0608（LW-NDL-01）压入左座 Ø10 N7，压力只加在外圈；</li>
+<li>装 626 座左侧挡圈 CLP-LW-01（DIN 472-19）；</li>
+<li>LW-WORM-01 从右侧穿过 Ø19 通孔（蜗杆齿顶 Ø17.6 可以通过），左轴颈 Ø6 h5 插入 HK0608；</li>
+<li>LW-BRG-01（626-2RS）套到右轴颈上，外圈推入 Ø19 孔贴紧左挡圈，再装右挡圈 CLP-LW-01。626 是固定端，承受蜗杆轴向力（满载 421 N）；</li>
+<li>依次装 LW-SPC-01、LW-GEAR-01（z21），打入 PIN-LWG-01（Ø1.5 弹性销，孔为预钻，不需要配钻），装 CLP-LW-02（DIN 471-6）；</li>
+<li>检查：蜗杆手转顺畅，轴向游隙 ≤ 0.05。</li>
+<li><strong>摆座子组件</strong>：</li>
+<li>EXIT-PIN-01（Ø12 p6）从上方压入 LW-BRIDGE-01，肩部 Ø15 贴紧桥架顶面；</li>
+<li>EXIT-BRG-02（6201）从上方压入 EXIT-SWV-01 毂孔 Ø32 K6，贴紧底部挡肩 Ø27。这个挡肩承受外拉轴向力 F；</li>
+<li>EXIT-BRG-01（6201）外圈涂 638 胶后压入，与下轴承紧贴；</li>
+<li>摆座套到摆轴销上，两只内圈 k5 推入，下轴承内圈贴住销肩，装 CLP-EXIT-01（DIN 471-12）；</li>
+<li>LW-MAG-01 磁环胶接到毂外圆，零极对准叉板中心线（刻线）。</li>
+<li><strong>转向轮</strong>：EXIT-SHV-01 压入 HK0608（EXIT-NDL-01），用 EXIT-AXL-01 装入叉板，两端 DIN 6799 挡圈。</li>
+<li><strong>导线臂</strong>：<ul>
+<li>两个 LW-ROL-01 各压一个 HK0608（LW-NDL-02），套到 LW-PIN-01 上，销压入 LW-ARM-01（p6），下端装 E 型挡圈；</li>
+<li>LW-WHEEL-01 蜗轮扇形用 4×M3×6 ISO 10642（加 243 胶，1.0 N·m）固定到导线臂；</li>
+<li>导线臂用 4×M3 ISO 10642（加 243 胶，1.2 N·m）固定到摆座的臂安装座。</li>
+</ul>
+</li>
+<li>LW-HALL-01 霍尔板（M2.5）和两只 LW-LIMIT-01 限位开关装到桥架上。限位凸块朝向卷筒一侧，触发角 ±43.4°，工作角 ±41.4°。</li>
 </ol>
 <h2>C. 卷筒模块</h2>
 <ol>
-<li>4×PIN-DRUM-01（Ø4 m6）压入 DRUM-HUB-01 的 N7 孔，露出 4 mm。DRUM-01 的 G7 孔对准销，止口 Ø24 H7 / g6 推入。</li>
-<li>绳端：先用 DRUM-CLAMP-01（M3×10 + 胶，1.0 N·m）压住绳头，再按左旋方向缠 3 圈死圈。实际装配时剩余绳长等全部装完后再收卷。</li>
-<li>DRUM-01 左轴颈装 BRG-03（Ø17 k5）和 CLP-BRG03。BRG-03-HSG 外圈 G7 滑入（浮动端）。</li>
-<li><strong>齿轮定相</strong>：<ul>
-<li>小车摇到 x_g = −29.3，即左限位触发点外 1.5 mm；</li>
-<li>把卷筒转到第一工作圈起点：锚固块之后第 4 圈，槽口对准 +Z；</li>
-<li>让 DRUM-HUB 的 z56 齿和 LW-GEAR-01 的 z35 齿啮合，然后把 LW-GEAR-01 装上丝杠右端并配钻 Ø2 横销孔，压入 PIN-LWG-01；</li>
-<li>允许相位误差 ±0.5 mm，对应偏角 1.06°。</li>
+<li>4×PIN-DRUM-01（Ø3 m6×7）压入 DRUM-HUB-01 法兰的 N7 孔（PCD32）。DRUM-01（R25 单层，21 圈，槽距 3.2 左旋）的 G7 孔对准销，从止口推入。</li>
+<li>绳端：DRUM-CLAMP-01（M3×10 加胶，1.0 N·m）压住绳头，按左旋方向缠 3 圈死圈。剩余绳长等全部装完后再收卷。</li>
+<li>DRUM-01 左轴颈装 BRG-03 和 CLP-BRG03。BRG-03-HSG 外圈 G7 滑入（浮动端）。</li>
+<li>卷筒组件的内花键推入 MOT-SHAFT-01：推入的同时微转卷筒，让 z35 和已装好的惰轮 z24 沿轴向进入啮合。</li>
+<li>SCR-DRUM-01 从左端经空心轴颈拧入，5.5 N·m，加胶。</li>
+</ol>
+<h2>D. 核心骨架、摆座、蜗杆箱和定相</h2>
+<ol>
+<li>HSG-FRAME-01：BRG-03-HSG 止口入 H8，4×M3×8 拧紧，1.1 N·m。</li>
+<li>桥架子组件（含摆座和导线臂）：左端用 M4×14 + Ø3 销（PIN-BRG-01）固定到中隔板，2.6 N·m；右端 Ø6 g6 止口销插入 MOT-HSG。</li>
+<li>穿绳：绳从卷筒出绳切点沿 +Y 进入两只对轮之间（间隙 3.3），沿导线臂绕过中心转向轮 90°，再沿摆轴向上穿出。绳头先从 EXIT-BASE 的导绳孔穿出。</li>
+<li><strong>定相（关键步骤）</strong>：<ul>
+<li>卷筒转到第 1 工作圈起点：锚固块后第 4 圈的槽口对准出绳切点（+Z 顶点），这对应"绳全放出"位置；</li>
+<li>摆座转到 θ = −41.4°，用霍尔读数（维修固件）或定相样板 LW-JIG-01（工装，未建模）确认；</li>
+<li>对应关系：全收绳 ↔ θ = +41.4°，全放出 ↔ θ = −41.4°，卷筒每转 5.000°。</li>
 </ul>
 </li>
-<li>卷筒组件内花键（9H）推入 MOT-SHAFT-01 外花键，DRUM-HUB 端面贴紧 LW-SPC 一侧的轴肩。</li>
-<li>SCR-DRUM-01（M5×70 12.9 + ISO 7092 Ø9 垫圈）从卷筒左端经空心轴颈 Ø10 拧入轴端 M5，用 4 mm 长柄内六角（L ≥ 90），拧紧 5.5 N·m 加胶。</li>
-</ol>
-<h2>D. 出线模块</h2>
-<ol>
-<li>LW-BRIDGE-01：压入 EXIT-PIN-01（Ø10 n6 / N7），装 EXIT-BRG-02（6000）和 CLP-EXIT-01。</li>
-<li>EXIT-SWV-01：<ul>
-<li>转向轮 EXIT-SHV-01 压入 HK0608，用 EXIT-AXL-01（Ø6，两端 E 型挡圈）装入叉板；</li>
-<li>下毂 Ø26 H7 套到 6000 外圈上；</li>
-<li>上管 Ø20 k6 压入 61804 内圈，装 CLP-EXIT-02（DIN 471-20）。</li>
+<li><strong>装入蜗杆箱</strong>：LW-BOX-01 子组件沿 −Z 方向落入：<ul>
+<li>蜗杆沿蜗轮齿槽的齿宽方向滑入啮合；z21 同时沿径向进入和惰轮 z24 的啮合；</li>
+<li>惰轮相位最多差半个齿，换算到摆角 ≤ 0.07°（导轮横向 ≤ 0.05 mm），可以忽略；</li>
+<li>隔板侧：Ø3 销（PIN-LWB-01）+ 2×M3×12 ISO 10642，1.1 N·m；电机壳侧：2×M3×8 加 243 胶，1.1 N·m。</li>
 </ul>
 </li>
-<li>绳从卷筒出绳点穿过两个导轮之间，绕转向轮 90°，再沿转向管上行。绳头先从 EXIT-BASE 孔穿出。</li>
-<li>桥架左端 M4×14（2.6 N·m）加 Ø3 销固定到中隔板，右端 Ø6 g6 止口销插入 MOT-HSG。</li>
-<li>EXIT-BASE-01 的 Ø32 K6 压入 61804 外圈，装 CLP-EXIT-03（DIN 472-32）。</li>
+<li>检查侧隙：在导线臂端部测量蜗杆副侧隙，目标 0.05–0.12。中心距 56 由隔板、电机壳和桥架的销定位保证，RSS ≈ ±0.035。如果侧隙不合格，修磨电机壳侧的安装面，或者更换蜗杆箱。</li>
+<li>手转卷筒一个全行程（16.6 圈）：摆座 −41.4° → +41.4°，全程不卡滞，导轮中心与绳槽的横向误差 ≤ 0.8 mm（理论最大值 0.72）。</li>
 </ol>
-<h2>E. 骨架和壳体</h2>
+<h2>E. 电子和壳体</h2>
 <ol>
-<li>HSG-FRAME-01：BRG-03-HSG 止口 Ø43 f7 入 H8，4×M3×8 从卷筒仓侧拧入，1.1 N·m。LW-END-L 用 2×M3×12 从隔板侧拧入。</li>
 <li>电子：<ul>
 <li>PCB-HS-01 加 TIM 贴背壁；</li>
 <li>PCB-MAIN-01 4×M3×6，0.6 N·m；</li>
@@ -60,14 +78,15 @@
 </li>
 <li>核心模块（电机 + 排线 + 卷筒 + 出线 + 隔板）放入下半壳。分型面贴 0.8 mm EPDM 条，合上上半壳（2×Ø3 销定位）。</li>
 <li>4×BOLT-TIE-01（M4×102）从右端盖把手开口内插入，用 L 型扳手拧入主壳凸台（钢丝螺套），2.5 N·m。</li>
-<li>EXIT-BASE 的 4×M3 沉头拧入壳体凸台，1.1 N·m。EXIT-GUIDE-01 装入 EXIT-UNI-01，3×M3×8，0.8 N·m。贴 LBL-SAFETY-01。</li>
+<li>EXIT-BASE 的 4×M3 沉头拧入壳体凸台，1.1 N·m（底板下表面有让位：转向轮扫掠 Ø41×1.2、626 座 R11.6；v03 中底板不再承受出绳轴向力）。EXIT-GUIDE-01 装入 EXIT-UNI-01，3×M3×8，0.8 N·m。贴 LBL-SAFETY-01。</li>
 <li>电池仓：BAT-MOD-01 插入 BAT-CONN-01，HSG-END-L-01 用 4×M4 ISO 10642 拧紧，2.6 N·m。</li>
 <li>绳头：CONN-01 绕线加卡口。</li>
 </ol>
 <h2>F. 出厂检查</h2>
 <ol>
-<li>空载：卷筒正反转各 25 圈，小车全行程不卡滞，两个限位开关都能触发。</li>
-<li>绳收满后，检查第一圈和最后一圈都在槽内，不跳槽、不叠绳。</li>
-<li>加载 785 N 静拉 60 s：各处无异响，壳体无可见变形。转向座在 ±60° 内转动顺畅。</li>
-<li>记录电机电流、绳长零点和编码器零点。</li>
+<li>空载：卷筒正反转全行程（16.6 圈），摆座 ±41.4° 平顺，霍尔角度与卷筒编码器换算值之差 ≤ 0.3°；两个限位开关只在人为超程时触发（±43.4°）。</li>
+<li>绳收满后检查：第一圈和最后一圈都在槽内，不跳槽、不叠绳；最大偏角目视 ≤ 2°。</li>
+<li>静止自锁：断电后，在导线臂上施加 ±20 N·m 的扭矩，摆座不得转动（静摩擦 μs ≥ 0.08 时自锁）。</li>
+<li>加载 785 N 静拉 60 s：分别在 θ = −41.4°、0°、+41.4° 三个位置各做一次，各处无异响，壳体无可见变形，蜗杆副侧隙没有变化。</li>
+<li>记录电机电流、绳长零点、编码器零点和霍尔零点。</li>
 </ol>
